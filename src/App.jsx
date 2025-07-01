@@ -1,6 +1,7 @@
 import { useState } from "react"; //react hook to manage state
 import PLANTS from "./data"; //imports the plant array of data
 import PlantList from "./components/PlantList";
+import Cart from "./components/Cart";
 
 export default function App() {
   const [cart, setCart] = useState([]); //tracks cart contents
@@ -22,19 +23,37 @@ export default function App() {
       //for other plants return as is
       //this returns new array and does not change origional array
       if (existingItem) {
+        // if the plant is already in the cart then .map is used to return a new array
+        // { ...item} creates a copy of the object and increases its quantity by 1
+        // this returns a new array and does not change original array
         return prevCart.map((item) =>
           item.id === plant.id ? { ...item, quantity: item.quantity + 1 } : item
         );
-        //if NOT in the cart yet AKA if no match then
-        //new array is created using ...prevCart and add new object. the plant object plus the quanity of 1
-        //tldr adds the plant to the cart with a quanitity of 1
-        // ...prevCart is used when you want to copy all the items from the prevCart array into a new array
-        // ... is a spread operator. take all the parts of this thing/array/object and spread them out into the place i am writing
-        // so if prevCart = [1, 2, 3] then newCart = [...prevCart, 4] would make [1, 2, 3, 4]
       } else {
+        // if NOT in the cart yet:
+        // adds the plant to the cart with a quantity of 1
         return [...prevCart, { ...plant, quantity: 1 }];
       }
     });
+  }
+
+  // these are the incrementItem and decrementItem functions that are used in the cart.jsx file
+  function incrementItem(id) {
+    setCart((prevCart) =>
+      prevCart.map((item) =>
+        item.id === id ? { ...item, quantity: item.quantity + 1 } : item
+      )
+    );
+  }
+
+  function decrementItem(id) {
+    setCart((prevCart) =>
+      prevCart
+        .map((item) =>
+          item.id === id ? { ...item, quantity: item.quantity - 1 } : item
+        )
+        .filter((item) => item.quantity > 0)
+    );
   }
 
   //when React renders the App component, show the JSX inside these parenthese
@@ -46,6 +65,11 @@ export default function App() {
     <div className="app">
       <h1>Proper Plants 🌿</h1>
       <PlantList plants={PLANTS} addToCart={addToCart} />
+      <Cart
+        cart={cart}
+        incrementItem={incrementItem}
+        decrementItem={decrementItem}
+      />
     </div>
   );
 }

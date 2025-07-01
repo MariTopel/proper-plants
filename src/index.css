@@ -1,6 +1,73 @@
-.app {
-  padding: 2rem;
+/* src/index.css */
+
+body {
   font-family: sans-serif;
-  max-width: 800px;
-  margin: 0 auto;
+  margin: 0;
+  padding: 2rem;
+  background-color: #f0f4f8;
+  color: #333;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.plant-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.plant-card {
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 1rem;
+  width: 150px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.plant-image {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.plant-card button {
+  margin-top: 0.5rem;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.9rem;
+}
+
+.cart {
+  width: 100%;
+  max-width: 600px;
+  background: white;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.cart-item span {
+  margin-right: 0.5rem;
+}
+
+.cart-item button {
+  padding: 0.25rem 0.5rem;
 }
