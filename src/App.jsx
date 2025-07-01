@@ -1,5 +1,6 @@
 import { useState } from "react"; //react hook to manage state
 import PLANTS from "./data"; //imports the plant array of data
+import PlantList from "./components/PlantList";
 
 export default function App() {
   const [cart, setCart] = useState([]); //tracks cart contents
@@ -36,5 +37,15 @@ export default function App() {
     });
   }
 
-  return <></>;
+  //when React renders the App component, show the JSX inside these parenthese
+  //this is like a wrapper for the whole app layout
+  //renders PlantList.
+  //plants={PLANTS} passes the array of plant objects
+  //addToCard={addToCart} passes your function for handling "Add to Cart"
+  return (
+    <div className="app">
+      <h1>Proper Plants 🌿</h1>
+      <PlantList plants={PLANTS} addToCart={addToCart} />
+    </div>
+  );
 }
