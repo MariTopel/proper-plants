@@ -1,3 +1,4 @@
+//this is an array of objects with each object representing a plant with an id, image, and plant name
 const PLANTS = [
   {
     id: 1,
@@ -76,4 +77,4 @@ const PLANTS = [
   },
 ];
 
-export default PLANTS;
+export default PLANTS; //this means other files can import the array using import PLANTS from "./data"
